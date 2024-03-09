@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    h1{
+        color: rgb(69, 119, 119);
+    }
+    body{
+        transition: background-color 0,3, color 0,3;
+    }
+    .dark-theme{
+        background-color: black;
+        color: white;
+    }
+    .dark-theme h1{
+        color: white;
+    }
+</style>
+<body>
+    <h1>
+        Переключение темы
+    </h1>
+    <label for="theme">тема</label>
+    <input type="checkbox" id="theme">
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            const themToogle= document.getElementById("theme")
+            // если в локальном хранилище тема = темной добавляем в боди темную тему и ставим чекид тру//
+            if (localStorage.getItem('theme')=== 'dark'){
+        document.body.classList.add('dark-theme');
+        themToogle.checked=true;
+       }
+            //добавляем в тем тогл прослеживание событий и если  тем тогл тру меняем тему на темную//
+            themToogle.addEventListener('change', function(){
+                if (themToogle.checked){
+                    document.body.classList.add('dark-theme')
+                    localStorage.setItem('theme', 'dark')
+                }
+                //также если инпут является не тру то удаляем темную тему и добавляем белую дадьше сохраняем в локал хранилище
+                else{
+                    document.body.classList.remove('dark-theme')
+                    localStorage.setItem('theme', 'light')
+                }
+            })
+        })
+       
+      
+            
+    </script>
+</body>
+</html>
